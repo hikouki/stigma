@@ -1,0 +1,13 @@
+{
+    "name": "kouki/replace-url",
+    "require": {
+        "jbzoo/utils": "^1.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hi.kouki",
+            "email": "ame.kh000@gmail.com"
+        }
+    ]
+}

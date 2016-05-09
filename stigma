@@ -18,10 +18,10 @@ if (count($argv) <= 1 || count($argv) >= 5) {
      \/         /_____/       \/     \/
 
 Usage:
-  php replace.php <database_file_path> <target> <replace>
+  php stigma <database_file_path> <target> <replace>
 
 Example:
-  php replace.php ./ht.sqlite localhost 160.122.111.11
+  php stigma ./ht.sqlite localhost 160.122.111.11
 
 EOF;
     exit(1);

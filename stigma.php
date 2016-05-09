@@ -8,6 +8,13 @@ if (count($argv) <= 1 || count($argv) >= 5) {
     // usage
     echo <<<EOF
 
+          __  .__
+  _______/  |_|__| ____   _____ _____
+ /  ___/\   __\  |/ ___\ /     \\__  \
+ \___ \  |  | |  / /_/  >  Y Y  \/ __ \_
+/____  > |__| |__\___  /|__|_|  (____  /
+     \/         /_____/       \/     \/
+
 Usage:
   php replace.php <database_file_path> <target> <replace>
 

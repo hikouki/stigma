@@ -60,7 +60,7 @@ class App
      * Delete and Insert database row.
      * @param $row array Row in table.
      * @param $fields array Fields in table.
-     * @oaram $table string Table name.
+     * @param $table string Table name.
      * @return void
      */
     private function updateRow($row, $table)

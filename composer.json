@@ -3,6 +3,13 @@
     "require": {
         "jbzoo/utils": "^1.6"
     },
+    "autoload": {
+        "files": [
+            "src/app.php",
+            "src/database.php",
+            "src/replacer.php"
+        ]
+    },
     "license": "MIT",
     "authors": [
         {

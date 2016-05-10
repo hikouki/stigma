@@ -2,12 +2,25 @@
 
 namespace Hikouki\Stigma;
 
-class Database extends \PDO
+use \PDO;
+
+class Database extends PDO
 {
     /**
      * Singleton instance
+     * @param $database_file_path Database file path.
      */
     private static $instance;
+
+    public static function load($database_file_path)
+    {
+        if (!self::$instance) {
+            self::$instance = new self('sqlite:'.$database_file_path);
+            self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        }
+    }
+
 
     /**
      * Get Detabase singleton instance.
@@ -15,11 +28,6 @@ class Database extends \PDO
      */
     public static function getInstance()
     {
-        if (!self::$instance) {
-            self::$instance = new self('sqlite:'.$database_file_path);
-            self::$instance->setAttribute(DB::ATTR_ERRMODE, DB::ERRMODE_EXCEPTION);
-            self::$instance->setAttribute(DB::ATTR_DEFAULT_FETCH_MODE, DB::FETCH_ASSOC);
-        }
         return self::$instance;
     }
 }

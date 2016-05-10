@@ -4,8 +4,6 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use JBZoo\Utils\Ser;
-
 if (count($argv) <= 1 || count($argv) >= 5) {
     // usage
     echo <<<EOF
@@ -25,10 +23,10 @@ Example:
 
 EOF;
     exit(1);
-} else {
-    @list(, $database_file_path, $target, $replace) = $argv;
 }
+
+@list(, $database_file_path, $target, $replace) = $argv;
 
 $app = new Hikouki\Stigma\App;
 
-$app->execute();
+$app->execute($database_file_path, $target, $replace);

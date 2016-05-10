@@ -12,10 +12,10 @@ Search replace tool for wordpress database.(sqlite, ...)
      \/         /_____/       \/     \/
 ```
 
-Usage:
+Usage:  
   php stigma <database_file_path> <target> <replace>
 
-Example:
+Example:  
   php stigma ./ht.sqlite localhost 160.122.111.11
 
 # License

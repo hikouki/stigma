@@ -26,6 +26,10 @@
             "@phpcpd",
             "@phploc"
         ],
+        "update-all" : [
+            "composer self-update --no-interaction",
+            "composer update --optimize-autoloader --no-interaction"
+        ],
         "phpunit": "phpunit --bootstrap vendor/autoload.php ./tests",
         "phpcs": "phpcs ./src --standard=PSR2 --report=full",
         "phpmd": "phpmd ./src text codesize,controversial,design,unusedcode",

@@ -21,3 +21,6 @@ before_script:
 script:
   - composer update-all
   - composer test
+
+after_script:
+  - travis_retry composer coveralls

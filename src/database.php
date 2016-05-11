@@ -21,7 +21,7 @@ class Database extends PDO
     public static function load($databaseFilePath)
     {
         if (!self::$instance) {
-            self::$instance = new self('sqlite:'.$databaseFilePath);
+            self::$instance = new self('sqlite:'.$databaseFilePath);//
             self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }

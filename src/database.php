@@ -12,6 +12,12 @@ class Database extends PDO
      */
     private static $instance;
 
+    /**
+     * Load database file.
+     * Create singleton instance.
+     * @param $database_file_path Database file path.
+     * @return void
+     */
     public static function load($database_file_path)
     {
         if (!self::$instance) {

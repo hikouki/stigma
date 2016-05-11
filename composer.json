@@ -20,11 +20,13 @@
     "scripts": {
         "autoload": "composer dump-autoload --optimize --no-interaction",
         "test": [
+            "@phpunit",
             "@phpcs",
             "@phpmd",
             "@phpcpd",
             "@phploc"
         ],
+        "phpunit": "phpunit --bootstrap vendor/autoload.php ./tests",
         "phpcs": "phpcs ./src --standard=PSR2 --report=full",
         "phpmd": "phpmd ./src text codesize,controversial,design,unusedcode",
         "phpcpd": "phpcpd ./src --verbose",

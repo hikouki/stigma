@@ -1,7 +1,34 @@
 {
     "name": "kouki/replace-url",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hi.kouki",
+            "email": "ame.kh000@gmail.com"
+        }
+    ],
     "require": {
         "jbzoo/utils": "^1.6"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.6",
+        "phpunit/phpunit": "~4.0",
+        "phpmd/phpmd": "^2.4",
+        "sebastian/phpcpd": "^2.0",
+        "phploc/phploc": "^3.0"
+    },
+    "scripts": {
+        "autoload": "composer dump-autoload --optimize --no-interaction",
+        "test": [
+            "@phpcs",
+            "@phpmd",
+            "@phpcpd",
+            "@phploc"
+        ],
+        "phpcs": "phpcs ./src --standard=PSR2 --report=full",
+        "phpmd": "phpmd ./src text codesize,controversial,design,unusedcode",
+        "phpcpd": "phpcpd ./src --verbose",
+        "phploc": "phploc ./src --verbose"
     },
     "autoload": {
         "files": [
@@ -9,12 +36,5 @@
             "src/database.php",
             "src/replacer.php"
         ]
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "hi.kouki",
-            "email": "ame.kh000@gmail.com"
-        }
-    ]
+    }
 }

@@ -8,20 +8,20 @@ class Database extends PDO
 {
     /**
      * Singleton instance
-     * @param $database_file_path Database file path.
+     * @param $databaseFilePath Database file path.
      */
     private static $instance;
 
     /**
      * Load database file.
      * Create singleton instance.
-     * @param $database_file_path Database file path.
+     * @param $databaseFilePath Database file path.
      * @return void
      */
-    public static function load($database_file_path)
+    public static function load($databaseFilePath)
     {
         if (!self::$instance) {
-            self::$instance = new self('sqlite:'.$database_file_path);
+            self::$instance = new self('sqlite:'.$databaseFilePath);
             self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             self::$instance->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }

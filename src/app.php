@@ -9,15 +9,15 @@ class App
 {
     /**
      * Execute.
-     * @param $database_file_path Database file path.
+     * @param $databaseFilePath Database file path.
      * @param $target replace target string.
      * @param $replace replaced string.
      * @return void
      */
-    public function execute($database_file_path, $target, $replace)
+    public function execute($databaseFilePath, $target, $replace)
     {
         try {
-            Database::load($database_file_path);
+            Database::load($databaseFilePath);
 
             $db = Database::getInstance();
 
@@ -68,12 +68,12 @@ class App
         $fields = array_keys($row);
         $values = array_values($row);
         $pressholders = str_repeat("?,", count($fields)-1);
-        $insert_sql = "INSERT INTO ".$table."(".implode(',', $fields).") VALUES (".$pressholders."?)";
-        $delete_sql = "DELETE FROM ".$table." WHERE ".current($fields)." = ?";
+        $insertSQL = "INSERT INTO ".$table."(".implode(',', $fields).") VALUES (".$pressholders."?)";
+        $deleteSQL = "DELETE FROM ".$table." WHERE ".current($fields)." = ?";
 
         $db = Database::getInstance();
-        $db->prepare($delete_sql)->execute([current($values)]);
-        $db->prepare($insert_sql)->execute($values);
+        $db->prepare($deleteSQL)->execute([current($values)]);
+        $db->prepare($insertSQL)->execute($values);
 
         echo '→ MODIFY: ('.$table.') '.implode(', ', $values)."\n";
     }

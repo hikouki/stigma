@@ -59,7 +59,6 @@ class App
     /**
      * Delete and Insert database row.
      * @param $row array Row in table.
-     * @param $fields array Fields in table.
      * @param $table string Table name.
      * @return void
      */

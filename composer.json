@@ -32,9 +32,9 @@
     },
     "autoload": {
         "files": [
-            "src/app.php",
-            "src/database.php",
-            "src/replacer.php"
+            "src/App.php",
+            "src/Database.php",
+            "src/Replacer.php"
         ]
     }
 }

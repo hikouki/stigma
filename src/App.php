@@ -16,21 +16,17 @@ class App
      */
     public function execute($databaseFilePath, $target, $replace)
     {
-        try {
-            Database::load($databaseFilePath);
+        Database::load($databaseFilePath);
 
-            $tables = Model::findAllTableStructure();
+        $tables = Model::findAllTableStructure();
 
-            foreach ($tables as $table) {
-                $rows = Model::findAll($table);
-                foreach ($rows as &$row) {
-                    if ($this->replaceIfHit($row, $target, $replace)) {
-                        Model::updateRow($row, $table);
-                    }
+        foreach ($tables as $table) {
+            $rows = Model::findAll($table);
+            foreach ($rows as &$row) {
+                if ($this->replaceIfHit($row, $target, $replace)) {
+                    Model::updateRow($row, $table);
                 }
             }
-        } catch (Exception $e) {
-            echo $e->getMessage();
         }
     }
 

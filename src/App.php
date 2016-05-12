@@ -2,8 +2,8 @@
 
 namespace Hikouki\Stigma;
 
-use \PDO;
-use \Exception;
+use PDO;
+use Exception;
 
 class App
 {
@@ -19,13 +19,10 @@ class App
         try {
             Database::load($databaseFilePath);
 
-            $db = Database::getInstance();
-
-            $tables = $db->query("SELECT name FROM sqlite_master WHERE type = 'table'")
-                    ->fetchAll(PDO::FETCH_COLUMN);
+            $tables = Model::findAllTableStructure();
 
             foreach ($tables as $table) {
-                $rows = $db->query("SELECT * FROM ".$table)->fetchAll();
+                $rows = Model::findAll($table);
                 foreach ($rows as &$row) {
                     if ($this->replaceIfHit($row, $target, $replace)) {
                         $this->updateRow($row, $table);
@@ -54,26 +51,5 @@ class App
         }
 
         return $replaced;
-    }
-
-    /**
-     * Delete and Insert database row.
-     * @param $row array Row in table.
-     * @param $table string Table name.
-     * @return void
-     */
-    private function updateRow($row, $table)
-    {
-        $fields = array_keys($row);
-        $values = array_values($row);
-        $pressholders = str_repeat("?,", count($fields)-1);
-        $insertSQL = "INSERT INTO ".$table."(".implode(',', $fields).") VALUES (".$pressholders."?)";
-        $deleteSQL = "DELETE FROM ".$table." WHERE ".current($fields)." = ?";
-
-        $db = Database::getInstance();
-        $db->prepare($deleteSQL)->execute([current($values)]);
-        $db->prepare($insertSQL)->execute($values);
-
-        echo '→ MODIFY: ('.$table.') '.implode(', ', $values)."\n";
     }
 }

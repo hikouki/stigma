@@ -1,12 +1,23 @@
 {
-    "name": "kouki/replace-url",
-    "license": "MIT",
+    "name": "hikouki/stigma",
+    "description": "Search replace tool for wordpress sqlite database.",
+    "keywords": [
+        "stigma",
+        "wordpress",
+        "sqlite"
+    ],
     "authors": [
         {
-            "name": "hi.kouki",
+            "name": "hikouki",
             "email": "ame.kh000@gmail.com"
         }
     ],
+    "bin": [
+        "stigma"
+    ],
+    "support": {
+        "issues": "https://github.com/hikouki/stigma/issues"
+    },
     "require": {
         "jbzoo/utils": "^1.6"
     },
@@ -45,5 +56,6 @@
             "src/Replacer.php",
             "src/Model.php"
         ]
-    }
+    },
+    "license": "MIT"
 }

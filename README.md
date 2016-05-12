@@ -23,10 +23,10 @@ composer global require hikouki/stigma
 ```
 
 Usage:  
-  php stigma <database_file_path> <target> <replace>
+  stigma <database_file_path> <target> <replace>
 
 Example:  
-  php stigma ./ht.sqlite localhost 160.122.111.11
+  stigma ./ht.sqlite localhost 160.122.111.11
 
 # License
 

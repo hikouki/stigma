@@ -8,7 +8,7 @@ Search replace tool for wordpress database.(sqlite, ...)
 # Install
 
 ```bash
-composer global require hikouki/stigma
+$ composer global require hikouki/stigma
 ```
 
 # Usage
@@ -23,11 +23,16 @@ composer global require hikouki/stigma
 ```
 
 Usage:  
-  stigma <database_file_path> <target> <replace>
+
+```
+$ stigma <database_file_path> <target> <replace>
+```
 
 Example:  
-  stigma ./ht.sqlite localhost 160.122.111.11
 
+```
+$ stigma ./ht.sqlite localhost 160.122.111.11
+```
 # License
 
 MIT

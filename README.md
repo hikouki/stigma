@@ -5,6 +5,12 @@
 
 Search replace tool for wordpress database.(sqlite, ...)
 
+# Install
+
+```bash
+composer global require hikouki/stigma
+```
+
 # Usage
 
 ```

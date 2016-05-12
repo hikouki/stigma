@@ -16,7 +16,7 @@ matrix:
       env: XDEBUG_OFF="yes"
 
 before_script:
-  - phpenv config-rm xdebug.ini
+  - if [[ $XDEBUG_OFF = yes ]]; then phpenv config-rm xdebug.ini; fi;
 
 script:
   - composer update-all

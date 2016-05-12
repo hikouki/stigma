@@ -18,6 +18,8 @@
     "support": {
         "issues": "https://github.com/hikouki/stigma/issues"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "jbzoo/utils": "^1.6"
     },

@@ -36,7 +36,7 @@
         "phpmd": "phpmd ./src text codesize,controversial,design,unusedcode",
         "phpcpd": "phpcpd ./src --verbose",
         "phploc": "phploc ./src --verbose",
-        "coveralls": "coveralls --verbose"
+        "coveralls": "coveralls --verbose --coverage_clover build/logs/clover.xml"
     },
     "autoload": {
         "files": [

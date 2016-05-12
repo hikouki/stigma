@@ -42,7 +42,8 @@
         "files": [
             "src/App.php",
             "src/Database.php",
-            "src/Replacer.php"
+            "src/Replacer.php",
+            "src/Model.php"
         ]
     }
 }

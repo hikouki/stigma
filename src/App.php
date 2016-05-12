@@ -25,7 +25,7 @@ class App
                 $rows = Model::findAll($table);
                 foreach ($rows as &$row) {
                     if ($this->replaceIfHit($row, $target, $replace)) {
-                        $this->updateRow($row, $table);
+                        Model::updateRow($row, $table);
                     }
                 }
             }

@@ -20,10 +20,10 @@ if (count($argv) <= 1 || count($argv) >= 5) {
      \/         /_____/       \/     \/
 
 Usage:
-  php stigma <database_file_path> <target> <replace>
+  stigma <database_file_path> <target> <replace>
 
 Example:
-  php stigma ./ht.sqlite localhost 160.122.111.11
+  stigma ./ht.sqlite localhost 160.122.111.11
 
 EOF;
     exit(1);

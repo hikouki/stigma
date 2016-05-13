@@ -3,7 +3,9 @@
 [![Build Status](https://travis-ci.org/hikouki/stigma.svg?branch=master)](https://travis-ci.org/hikouki/stigma)
 [![Coverage Status](https://coveralls.io/repos/github/hikouki/stigma/badge.svg?branch=master)](https://coveralls.io/github/hikouki/stigma?branch=master)
 
-Search replace tool for wordpress database.(sqlite, ...)
+Please use this tool when you change to the domain of wordpress.  
+Currently, only support sqlite database.  
+But, It will support mysql database.  
 
 # Install
 

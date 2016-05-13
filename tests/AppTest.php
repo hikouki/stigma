@@ -5,7 +5,7 @@ namespace Hikouki\Stigma\PHPUnit;
 use PHPUnit_Framework_TestCase;
 use Hikouki\Stigma\App;
 use Hikouki\Stigma\Model;
-use Closure;
+use Hikouki\Stigma\Database;
 
 class AppTest extends PHPUnit_Framework_TestCase
 {
@@ -19,10 +19,15 @@ class AppTest extends PHPUnit_Framework_TestCase
         unlink(__DIR__.'/resources/app.sqlite.test');
     }
 
+    public function setUp()
+    {
+        Database::unload();
+    }
+
     public function testExecute()
     {
         $app = new App;
-        $app->execute(__DIR__.'/resources/app.sqlite.test', 'github', 'qiita');
+        $app->execute('sqlite:'.__DIR__.'/resources/app.sqlite.test', 'github', 'qiita');
 
         $users = Model::findAll('users');
         $usermeta = Model::findAll('usermeta');
@@ -64,5 +69,21 @@ class AppTest extends PHPUnit_Framework_TestCase
                 'meta' => 'a:2:{s:3:"pet";s:4:"bird";s:3:"app";s:10:"google.com";}'
             ]
         ]);
+    }
+
+    public function test2002Exception()
+    {
+        $this->expectOutputString('No such file or database server.');
+
+        $app = new App;
+        $app->execute('mysql:host=localhost;dbname=testdb;username=test;password=pw', 'github', 'qiita');
+    }
+
+    public function testDefaultException()
+    {
+        $this->expectOutputString('Sorry, something database isn\'t supported.');
+
+        $app = new App;
+        $app->execute('something:'.__DIR__.'/resources/app.sqlite.test', 'github', 'qiita');
     }
 }

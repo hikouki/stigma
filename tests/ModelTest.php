@@ -11,7 +11,7 @@ class ModelTest extends PHPUnit_Framework_TestCase
     public static function setUpBeforeClass()
     {
         copy(__DIR__.'/resources/model.sqlite', __DIR__.'/resources/model.sqlite.test');
-        Database::reload(__DIR__.'/resources/model.sqlite.test');
+        Database::reload('sqlite:'.__DIR__.'/resources/model.sqlite.test');
     }
 
     public static function tearDownAfterClass()

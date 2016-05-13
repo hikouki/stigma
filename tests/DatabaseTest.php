@@ -5,13 +5,14 @@ namespace Hikouki\Stigma\PHPUnit;
 use PHPUnit_Framework_TestCase;
 use Hikouki\Stigma\Database;
 use Closure;
+use Exception;
 
 class DatabaseTest extends PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
         copy(__DIR__.'/resources/database.sqlite', __DIR__.'/resources/database.sqlite.test');
-        Database::reload(__DIR__.'/resources/database.sqlite.test');
+        Database::reload('sqlite:'.__DIR__.'/resources/database.sqlite.test');
     }
 
     public static function tearDownAfterClass()
@@ -19,33 +20,52 @@ class DatabaseTest extends PHPUnit_Framework_TestCase
         unlink(__DIR__.'/resources/database.sqlite.test');
     }
 
-    public function testLoad()
+    public function setUp()
     {
-        Closure::bind(function () {
-            Database::$instance = null;
-            Database::load(__DIR__.'/resources/database.sqlite.test');
-            $tmp = Database::$instance;
-            Database::load(__DIR__.'/resources/database.sqlite.test');
-            $this->assertNotNull(Database::$instance);
-            $this->assertSame(Database::$instance, $tmp);
-        }, $this, '\Hikouki\Stigma\Database')->__invoke();
+        Database::unload();
+    }
+
+    public function testLoadSQLite()
+    {
+        Database::load('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+        $tmp = Database::getInstance();
+        Database::load('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+        $this->assertNotNull(Database::getInstance());
+        $this->assertSame(Database::getInstance(), $tmp);
+    }
+
+    public function testLoadNotSupported()
+    {
+        try {
+            Database::load('something:'.__DIR__.'/resources/database.sqlite.test');
+            $this->fail('Not throw expcetion.');
+        } catch (Exception $e) {
+            $this->assertNull(Database::getInstance());
+            $this->assertSame('Sorry, something database isn\'t supported.', $e->getMessage());
+        }
+    }
+
+    public function testUnload()
+    {
+        Database::load('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+        Database::unload('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+        $this->assertNull(Database::getInstance());
     }
 
     public function testReLoad()
     {
-        Closure::bind(function () {
-            Database::$instance = null;
-            Database::load(__DIR__.'/resources/database.sqlite.test');
-            $tmp = Database::$instance;
-            Database::reload(__DIR__.'/resources/database.sqlite.test');
-            $this->assertNotSame(Database::$instance, $tmp);
-        }, $this, '\Hikouki\Stigma\Database')->__invoke();
+        Database::load('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+        $tmp = Database::getInstance();
+        Database::reload('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+        $this->assertNotSame(Database::getInstance(), $tmp);
     }
 
     public function testGetInstance()
     {
         Closure::bind(function () {
-            $this->assertNotNull(Database::$instance, Database::getInstance());
+            Database::load('sqlite:'.__DIR__.'/resources/database.sqlite.test');
+            $this->assertNotNull(Database::getInstance());
+            $this->assertSame(Database::$instance, Database::getInstance());
         }, $this, '\Hikouki\Stigma\Database')->__invoke();
     }
 }

@@ -9,23 +9,33 @@ class App
 {
     /**
      * Execute.
-     * @param $databaseFilePath Database file path.
+     * @param $databaseURI Database uri.
      * @param $target replace target string.
      * @param $replace replaced string.
      * @return void
      */
-    public function execute($databaseFilePath, $target, $replace)
+    public function execute($databaseURI, $target, $replace)
     {
-        Database::load($databaseFilePath);
+        try {
+            Database::load($databaseURI);
 
-        $tables = Model::findAllTableStructure();
+            $tables = Model::findAllTableStructure();
 
-        foreach ($tables as $table) {
-            $rows = Model::findAll($table);
-            foreach ($rows as &$row) {
-                if ($this->replaceIfHit($row, $target, $replace)) {
-                    Model::updateRow($row, $table);
+            foreach ($tables as $table) {
+                $rows = Model::findAll($table);
+                foreach ($rows as &$row) {
+                    if ($this->replaceIfHit($row, $target, $replace)) {
+                        Model::updateRow($row, $table);
+                    }
                 }
+            }
+        } catch (Exception $e) {
+            switch ($e->getCode()) {
+                case '2002':
+                    echo "No such file or database server.";
+                    break;
+                default:
+                    echo $e->getMessage();
             }
         }
     }

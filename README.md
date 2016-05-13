@@ -5,7 +5,7 @@
 
 Please use this tool when you change to the domain of wordpress.  
 Currently, only support sqlite database.  
-But, It will support mysql database.  
+But, it will support mysql database.  
 
 # Install
 

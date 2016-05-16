@@ -8,10 +8,14 @@ use Exception;
 class Database extends PDO
 {
     /**
-     * Singleton instance
-     * @param $databaseURI Database uri.
+     * @var Database Singleton instance
      */
     private static $instance;
+
+    /**
+     * @var string Database scheme.
+     */
+    private static $scheme;
 
     /**
      * Load database file.
@@ -37,8 +41,8 @@ class Database extends PDO
     private static function createInstance($databaseURI)
     {
         preg_match("/^([^:]+):.+/", $databaseURI, $matches);
-        $scheme = $matches[1];
-        switch ($scheme) {
+        static::$scheme = $matches[1];
+        switch (static::$scheme) {
             case 'sqlite':
                 return new static($databaseURI);
             case 'mysql':
@@ -46,7 +50,7 @@ class Database extends PDO
                 preg_match("/password=([^;]+)/", $databaseURI, $password);
                 return new static($databaseURI, $username[1], $password[1]);
             default:
-                throw new Exception('Sorry, '.$scheme.' database isn\'t supported.');
+                throw new Exception('Sorry, '.static::$scheme.' database isn\'t supported.');
         }
     }
 
